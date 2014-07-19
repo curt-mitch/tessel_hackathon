@@ -10,25 +10,21 @@ ambient.on('ready', function(){
 	ambient.on('sound-trigger', function(data){
 		console.log('Heard a loud sound!');
 		console.log(data);
+		capturePic();
 	});
 });
 
 var capturePic = function(){
-	camera.on('ready', function(){
-		camera.takePicture(function(err, image){
-			if(err) {
-				console.log('error taking image',err);
-			} else {
-				var name = 'picture-' + Date().split(" ").join("") + '.jpg';
-				console.log('Picture saving as', name, '...');
-				process.sendfile(name, image);
-				console.log('done.');
-				// Turn the camera off to end the script
-				camera.disable();
-			}
-		});
+	camera.takePicture(function(err, image){
+		if(err) {
+			console.log('error taking image',err);
+		} else {
+			var name = 'picture-' + Date().split(" ").join("") + '.jpg';
+			console.log('Picture saving as', name, '...');
+			process.sendfile(name, image);
+			console.log('done.');
+			// Turn the camera off to end the script
+			camera.disable();
+		}
 	});
 };
-
-capturePic();
-capturePic();
