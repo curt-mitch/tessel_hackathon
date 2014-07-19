@@ -12,3 +12,23 @@ ambient.on('ready', function(){
 		console.log(data);
 	});
 });
+
+var capturePic = function(){
+	camera.on('ready', function(){
+		camera.takePicture(function(err, image){
+			if(err) {
+				console.log('error taking image',err);
+			} else {
+				var name = 'picture-' + Date().split(" ").join("") + '.jpg';
+				console.log('Picture saving as', name, '...');
+				process.sendfile(name, image);
+				console.log('done.');
+				// Turn the camera off to end the script
+				camera.disable();
+			}
+		});
+	});
+};
+
+capturePic();
+capturePic();
