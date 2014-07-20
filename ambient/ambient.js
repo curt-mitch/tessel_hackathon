@@ -10,7 +10,7 @@ specified light or sound level trigger is met.
 var tessel = require('tessel');
 var ambientlib = require('ambient-attx4');
 
-var ambient = ambientlib.use(tessel.port['B']);
+var ambient = ambientlib.use(tessel.port['A']);
 
 ambient.on('ready', function () {
  // Get points of light and sound data.
